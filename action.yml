@@ -23,5 +23,4 @@ runs:
         git clone -b ${{ inputs.gitee_branch }} https://${{ inputs.username }}:${{ inputs.password }}@gitee.com/${{ inputs.gitee_repo }}.git ${{ inputs.target_dir }}
         git show-ref
         git branch --verbose
-        git push gitee ${{ inputs.github_branch }}:${{ inputs.gitee_branch }}
       shell: bash
