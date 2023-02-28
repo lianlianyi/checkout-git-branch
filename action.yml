@@ -33,7 +33,6 @@ runs:
     - run: |
         cd ${{ inputs.target_dir }}
         git remote add github https://${{ github.token }}@github.com/${{ inputs.github_repo }}.git
-        git checkout github -B ${{ inputs.github_branch }}
         git push github ${{ inputs.gitee_branch }}:${{ inputs.github_branch }}
       shell: bash
       
