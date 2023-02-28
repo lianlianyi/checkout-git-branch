@@ -16,6 +16,12 @@ inputs:
   target_dir:
     description: '生成目录'
     required: true
+  github_repo:
+    description: 'Github 仓库，例如 username/repo'
+    required: true
+  github_branch:
+    description: 'Github 分支，例如 master'
+    required: true
 runs:
   using: composite
   steps:
@@ -24,3 +30,11 @@ runs:
         git show-ref
         git branch --verbose
       shell: bash
+    - run: |
+        cd ${{ inputs.target_dir }}
+        git remote add github https://${{ github.token }}@github.com/${{ inputs.github_repo }}.git
+        git checkout github -B ${{ inputs.github_branch }}
+        git push github ${{ inputs.gitee_branch }}:${{ inputs.github_branch }}
+      shell: bash
+      
+      
